@@ -1,0 +1,66 @@
+.f-root{position:absolute;inset:0;z-index:30;background:#0b0708;overflow:hidden;color:#fff1cf}
+.f-bg{position:absolute;inset:0;background-size:100% 100%;image-rendering:pixelated;transition:opacity .6s}
+.f-dim{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(circle at 50% 50%,#05030a26 0,#05030aeb 58%);transition:opacity .6s}
+
+/* ---- ruangan kue ---- */
+.f-ruby{position:absolute;left:21%;bottom:9%;height:50%;aspect-ratio:338/695;transform:translateX(-50%);z-index:6}
+.f-ruby img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.f-ruby.is-hop img{animation:f-hop .5s steps(2) infinite}
+@keyframes f-hop{50%{translate:0 -3%}}
+.f-cake{position:absolute;aspect-ratio:860/834;z-index:7}
+.f-cake>img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.f-candle{position:absolute;width:9%;height:40%;transform:translate(-50%,-100%);background:none;border:0;padding:0;cursor:pointer}
+.f-candle:disabled{cursor:default}
+.f-candle:nth-child(3n+3){--c:#7ec8ff}
+.f-candle:nth-child(3n+4){--c:#f2c66f}
+.f-stick{position:absolute;left:50%;bottom:0;width:42%;height:50%;transform:translateX(-50%);background:repeating-linear-gradient(180deg,var(--c,#ff6f8f) 0 20%,#fff1cf 20% 40%);box-shadow:0 0 0 .18em #1a1114}
+.f-candle.off .f-stick,.f-candle.out .f-stick{filter:brightness(.8)}
+.f-candle.is-hot .f-stick{animation:g-pulse 1s steps(2) infinite}
+.f-flame{position:absolute;left:50%;bottom:50%;width:100%;translate:-50% 0;transform-origin:50% 100%;filter:drop-shadow(0 0 .6em #ffd46a);animation:f-flick .3s steps(2) infinite}
+@keyframes f-flick{50%{transform:scale(.88,1.1)}}
+.f-smoke{position:absolute;left:50%;bottom:50%;pointer-events:none}
+.f-smoke i{position:absolute;left:0;bottom:0;width:.7em;height:.7em;background:#cfc6d4;opacity:0;animation:f-smoke 1.6s ease-out forwards}
+.f-smoke i:nth-child(2){left:.6em;animation-delay:.2s}
+.f-smoke i:nth-child(3){left:-.6em;animation-delay:.4s}
+@keyframes f-smoke{0%{opacity:.9;translate:0 0;scale:1}100%{opacity:0;translate:0 -4.5em;scale:1.9}}
+
+/* ---- panggung ---- */
+.f-glow{position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse 24% 15% at 50% 77%,#ffe9a870,transparent);animation:f-glow 1.2s steps(2) infinite}
+@keyframes f-glow{50%{opacity:.6}}
+.f-arch{position:absolute;left:50%;bottom:20%;height:54%;transform:translateX(-50%);z-index:10}
+.f-arch::after{content:"";position:absolute;left:18%;right:18%;bottom:-1%;height:4%;background:#0008;border-radius:50%;z-index:-1}
+.f-frame{position:absolute;inset:0;display:none}
+.f-frame.on{display:block}
+.f-frame>img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.f-face{position:absolute;overflow:hidden;border-radius:50%}
+.f-faceimg{width:100%;height:100%;display:block;image-rendering:pixelated;transform-origin:50% 100%}
+.f-arch.is-sing .f-frame.on{animation:f-bob .42s steps(2) infinite}
+@keyframes f-bob{50%{translate:0 -1.5%}}
+.f-arch.is-sing .f-faceimg{animation:f-talk .21s steps(2) infinite}
+@keyframes f-talk{50%{transform:scaleY(.93)}}
+.f-back{position:absolute;left:6%;bottom:-9%;height:44%;aspect-ratio:546/656;z-index:12}
+.f-back img{width:100%;height:100%;display:block;image-rendering:pixelated}
+
+/* ---- UI ---- */
+.f-fx{position:absolute;inset:0;pointer-events:none;z-index:30}
+.f-hint,.f-mic,.f-skip{font-family:"Press Start 2P",monospace;color:#fff1cf;background:#1a1114e6;border:.25em solid #f2c66f;box-shadow:.3em .3em 0 #000}
+.f-hint{position:absolute;left:50%;top:5%;transform:translateX(-50%);padding:.8em 1.3em;font-size:.8em;z-index:25;white-space:nowrap;animation:g-pulse 1.2s steps(2) infinite}
+.f-mic{position:absolute;left:50%;top:13%;transform:translateX(-50%);padding:.8em 1.2em;font-size:.7em;z-index:25;cursor:pointer}
+.f-mic.on{border-color:#7dff9c}
+.f-song{position:absolute;left:50%;top:6%;transform:translateX(-50%);width:76%;text-align:center;z-index:20;display:grid;gap:.7em;justify-items:center;pointer-events:none}
+.f-song small{font-family:"Press Start 2P",monospace;font-size:.7em;color:#f2c66f;text-shadow:.15em .15em 0 #000}
+.f-song p{margin:0;padding:.35em 1em;font-size:2.3em;line-height:1.2;background:#1a1114c0;border:.12em solid #f2c66f66;text-shadow:.1em .1em 0 #000;animation:f-lyric .35s steps(4)}
+@keyframes f-lyric{from{opacity:0;translate:0 .4em}}
+.f-skip{position:absolute;right:1.5%;top:3%;z-index:46;padding:.7em 1em;font-size:.6em;cursor:pointer;opacity:.75}
+.f-cover{position:absolute;inset:0;z-index:45;background:#12040a;opacity:0;pointer-events:none;transition:opacity .8s}
+.f-cover.on{opacity:1;pointer-events:auto}
+.f-end{position:absolute;inset:0;z-index:50;background:#000d;display:grid;place-content:center;justify-items:center;text-align:center;gap:1.4em;padding:0 20%}
+.f-end h2{font-family:"Press Start 2P",monospace;color:#f2c66f;font-size:1.8em;margin:0}
+.f-end p{font-size:1.6em;line-height:1.4;margin:0}
+.f-end button{margin-top:1em;padding:1em 1.6em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;font-family:"Press Start 2P",monospace;font-size:1em;cursor:pointer}
+
+/* tombol lompat adegan (hanya muncul dengan ?finale di alamat, untuk testing) */
+.g-devjump{position:absolute;right:1%;top:12%;z-index:70;display:grid;gap:.35em}
+.g-devjump button{padding:.5em .8em;font-family:"Press Start 2P",monospace;font-size:.5em;color:#fff1cf;background:#1a1114e6;border:.2em solid #6b5a4a;cursor:pointer;opacity:.8}
+.g-devjump button.on{border-color:#7dff9c;color:#7dff9c}
+.g-devjump button:hover{opacity:1}

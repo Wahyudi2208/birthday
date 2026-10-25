@@ -1,0 +1,90 @@
+.gc-root{position:absolute;inset:0;z-index:35;background:#0b0708;overflow:hidden;color:#fff1cf}
+.gc-root.shake{animation:gc-shake .5s steps(8)}
+@keyframes gc-shake{0%,100%{translate:0 0}20%{translate:-.8em .3em}40%{translate:.7em -.4em}60%{translate:-.5em -.3em}80%{translate:.5em .4em}}
+.gc-bg{position:absolute;inset:0;background-size:100% 100%;image-rendering:pixelated}
+.gc-dim{position:absolute;inset:0;z-index:3;background:#05030a;pointer-events:none;transition:opacity .4s}
+.gc-ruby{position:absolute;left:17%;bottom:6%;height:44%;aspect-ratio:338/695;transform:translateX(-50%);z-index:4}
+.gc-ruby img{width:100%;height:100%;display:block;image-rendering:pixelated}
+
+/* kotak hadiah */
+.gc-box{position:absolute;left:50%;bottom:17%;height:44%;aspect-ratio:622/706;transform:translateX(-50%);z-index:6;background:none;border:0;padding:0;cursor:pointer}
+.gc-box:disabled{cursor:default}
+.gc-box img{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.gc-box .o{display:none}
+.gc-box.is-open .c{display:none}
+.gc-box.is-open .o{display:block}
+.gc-box.is-open{animation:gc-boxout .5s steps(5) 1.3s forwards}
+.gc-box.hot{animation:g-pulse 1s steps(2) infinite}
+@keyframes gc-boxout{to{opacity:0;scale:.6}}
+
+/* mesin gacha */
+.gc-machine{position:absolute;left:50%;bottom:14%;height:58%;aspect-ratio:380/752;transform:translateX(-50%);z-index:6;background:none;border:0;padding:0;cursor:pointer;transform-origin:50% 100%}
+.gc-machine:disabled{cursor:default}
+.gc-machine img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.gc-machine.pop{animation:gc-pop .6s steps(6)}
+@keyframes gc-pop{from{scale:0}70%{scale:1.1}to{scale:1}}
+
+/* kapsul */
+.gc-cap{position:absolute;left:50%;top:80%;width:5.5em;height:5.5em;translate:-50% -50%;z-index:8;background:none;border:0;padding:0;cursor:pointer;transition:top .6s steps(6),scale .6s steps(6)}
+.gc-cap:disabled{cursor:default}
+.gc-cap img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.gc-cap.tray{animation:gc-in .5s steps(5)}
+@keyframes gc-in{from{top:50%;opacity:0}to{top:80%;opacity:1}}
+.gc-cap.center{top:42%;scale:3.3}
+.gc-cap.shaking img{animation:gc-wob .12s steps(2) infinite}
+@keyframes gc-wob{0%{rotate:-8deg}100%{rotate:8deg}}
+.gc-half{position:absolute;left:50%;top:42%;width:18em;height:18em;translate:-50% -50%;z-index:9;image-rendering:pixelated;animation:gc-fly .65s steps(6) forwards}
+.gc-half.a{--s:-1}
+.gc-half.b{--s:1}
+@keyframes gc-fly{to{translate:calc(-50% + var(--s)*14em) calc(-50% - 3em);rotate:calc(var(--s)*35deg);opacity:0}}
+.gc-flash{position:absolute;inset:0;z-index:30;pointer-events:none;transition:opacity .4s}
+
+/* reveal */
+.gc-reveal{position:absolute;inset:0;z-index:12;display:grid;place-content:center;justify-items:center;gap:1em;cursor:pointer;perspective:90em}
+.gc-glow{filter:drop-shadow(0 0 1.4em var(--tc))}
+.gc-tier{font-family:"Press Start 2P",monospace;font-size:2em;text-shadow:.15em .15em 0 #000;transition:opacity .3s;height:1.4em}
+.gc-flip{position:relative;height:34em;transform-style:preserve-3d;transition:transform .7s steps(7)}
+.gc-flip.flipped{transform:rotateY(180deg)}
+.gc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.gc-face.front{transform:rotateY(180deg)}
+.gc-face.back img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.gc-next{font-family:"Press Start 2P",monospace;font-size:.75em;background:#1a1114e6;border:.25em solid #f2c66f;padding:.8em 1.2em;animation:g-pulse 1.2s steps(2) infinite}
+
+/* kartu */
+.gc-card{position:relative;width:100%;height:100%;font-size:calc(1em * var(--k,1));user-select:none}
+.gc-photo{position:absolute;overflow:hidden;background:#1a1114}
+.gc-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block}
+.gc-ph{width:100%;height:100%;display:grid;place-content:center;text-align:center;background:repeating-linear-gradient(45deg,#2a1d22 0 .8em,#1a1114 .8em 1.6em);color:#f2c66f}
+.gc-ph b{font-size:5em;line-height:1}
+.gc-ph small{font-family:"Press Start 2P",monospace;font-size:.6em}
+.gc-frame{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none}
+.gc-plate{position:absolute;display:grid;place-items:center;font-family:"Press Start 2P",monospace;font-size:.95em;color:var(--tc);text-shadow:.12em .12em 0 #000;letter-spacing:.05em;white-space:nowrap}
+.gc-no{position:absolute;left:14%;top:61.5%;font-family:"Press Start 2P",monospace;font-size:.55em;color:#fff1cf;text-shadow:.15em .15em 0 #000}
+.gc-panel{position:absolute;display:grid;align-content:space-evenly;padding:0 .8em;overflow:hidden}
+.gc-panel b{font-size:1.45em;line-height:1.05;color:#fff1cf;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:.1em .1em 0 #000}
+.gc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6em}
+.gc-stats span{display:grid;gap:.15em}
+.gc-stats small{font-family:"Press Start 2P",monospace;font-size:.5em;color:#f2c66f}
+.gc-stats i{display:block;height:.45em;background:#000;outline:.1em solid #f2c66f66}
+.gc-stats u{display:block;height:100%;background:var(--tc)}
+.gc-panel p{margin:0;font-size:.8em;line-height:1.15;color:#cdbfa6;font-style:italic}
+.gc-card.mini .gc-panel,.gc-card.mini .gc-no,.gc-card.mini .gc-plate{display:none}
+.gc-holo{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(115deg,transparent 25%,#ffffff55 40%,#ff7ac066 50%,#7ec8ff66 60%,transparent 75%);background-size:260% 100%;animation:gc-holo 2.6s linear infinite}
+@keyframes gc-holo{from{background-position:130% 0}to{background-position:-130% 0}}
+.gc-card.t-legendary,.gc-card.t-secret{filter:drop-shadow(0 0 .6em var(--tc))}
+
+/* album */
+.gc-album{position:absolute;inset:0;z-index:14;background:#0b0708ee;display:grid;place-content:center;justify-items:center;gap:1.2em}
+.gc-album h3{margin:0;font-family:"Press Start 2P",monospace;font-size:1.3em;color:#f2c66f}
+.gc-grid{display:grid;gap:.8em}
+.gc-grid button{background:none;border:0;padding:0;cursor:pointer}
+.gc-grid .not-own{filter:grayscale(.75) brightness(.55)}
+.gc-grid button:hover{translate:0 -.3em}
+.gc-go{font-family:"Press Start 2P",monospace;font-size:.9em;padding:.9em 1.4em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;cursor:pointer}
+.gc-zoom{position:absolute;inset:0;z-index:16;background:#000c;display:grid;place-content:center;cursor:pointer}
+.gc-big{height:36em}
+
+/* UI */
+.gc-tickets{position:absolute;left:2%;top:3%;z-index:20;padding:.7em 1em;font-family:"Press Start 2P",monospace;font-size:.75em;background:#1a1114e6;border:.25em solid #f2c66f;box-shadow:.3em .3em 0 #000}
+.gc-pull{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);z-index:20;padding:.9em 1.8em;font-family:"Press Start 2P",monospace;font-size:1em;background:#ff6f8f;color:#1a1114;border:.25em solid #1a1114;box-shadow:.3em .3em 0 #000;cursor:pointer;animation:g-pulse 1s steps(2) infinite}
+.gc-fx{position:absolute;inset:0;pointer-events:none;z-index:25}

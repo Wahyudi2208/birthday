@@ -1,0 +1,11 @@
+.g-root{position:fixed;inset:0;background:#0b0708;display:grid;place-items:center;font-family:"Pixelify Sans",monospace;color:#fff1cf;z-index:50}
+.g-stage{position:relative;width:min(100vw,177.78vh);aspect-ratio:16/9;overflow:hidden;font-size:min(1.25vw,2.22vh);user-select:none}
+.g-scene{position:absolute;inset:0}
+@keyframes g-pulse{50%{translate:0 -.3em;filter:brightness(1.35)}}
+@keyframes g-bob{50%{transform:translateY(-.4em)}}
+@keyframes g-blink{50%{opacity:0}}
+.g-mute{position:absolute;top:3%;right:2%;z-index:45;background:#1a1114;border:.2em solid #f2c66f;font-size:1.6em;padding:.2em .4em;cursor:pointer}
+.g-warn{display:none;position:fixed;inset:0;z-index:99;background:#0b0708;place-items:center;text-align:center;padding:2em;font-size:1.3rem}
+@media (max-width:899px){.g-warn{display:grid}}
+
+.g-scene{background-size:100% 100%;background-repeat:no-repeat;image-rendering:pixelated}

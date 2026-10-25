@@ -1,0 +1,27 @@
+.m-root{position:absolute;inset:0;z-index:30;background-color:#0b0708;background-size:100% 100%;image-rendering:pixelated;perspective:1800px;color:#4a2f1c}
+.m-content{position:absolute;inset:0;transition:opacity .25s}
+.m-content.is-hidden{opacity:0}
+.m-polaroid{position:absolute;left:16.3%;top:13.5%;width:27%;padding:1.1em 1.1em .6em;background:#fffaf0;box-shadow:.3em .4em 0 #0004;transform:rotate(-2deg);display:grid;gap:.7em;animation:m-pop .4s steps(4)}
+.m-photo{aspect-ratio:1/1;background:#d9cdb4;overflow:hidden}
+.m-photo img{width:100%;height:100%;object-fit:cover;image-rendering:auto}
+.m-ph{width:100%;height:100%;display:grid;place-content:center;gap:.8em;text-align:center;font-family:"Press Start 2P",monospace;font-size:1.1em;color:#8a7658}
+.m-ph small{font-size:.5em;line-height:1.6}
+.m-polaroid span{text-align:center;font-family:"Press Start 2P",monospace;font-size:.7em;color:#6b4a2c;padding-bottom:.4em}
+.m-text{position:absolute;left:60%;top:16%;width:27%;display:grid;gap:.9em;animation:m-pop .4s steps(4)}
+.m-text small{font-family:"Press Start 2P",monospace;font-size:.65em;color:#9a7a55}
+.m-text h3{margin:0;font-size:2em;line-height:1.15;border-bottom:.15em dashed #b8956a;padding-bottom:.4em}
+.m-text p{margin:0;font-size:1.45em;line-height:1.45}
+@keyframes m-pop{from{opacity:0;transform:translateY(.6em) rotate(-2deg)}}
+.m-flip{position:absolute;left:50%;top:9%;width:40%;height:66%;background:linear-gradient(90deg,#d8c49c,#f3e5c3 40%,#ecdcb8);box-shadow:0 0 1.5em #0006;transform-origin:left center;animation:m-turn .9s ease-in-out forwards;z-index:12}
+@keyframes m-turn{0%{transform:rotateY(0)}100%{transform:rotateY(-175deg)}}
+.m-nextpage{position:absolute;left:60%;bottom:23%;z-index:20;padding:.9em 1.4em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;font-family:"Press Start 2P",monospace;font-size:.85em;cursor:pointer;animation:g-pulse 1s steps(2) infinite}
+.m-portrait{position:absolute;left:4%;bottom:3%;width:17%;aspect-ratio:240/186;background:#1a1114;border:.3em solid #f2c66f;box-shadow:.4em .4em 0 #000;overflow:hidden;z-index:41}
+.m-portrait img{width:100%;height:100%;display:block;image-rendering:pixelated;object-fit:cover;object-position:top}
+.m-dialog{position:absolute;left:22%;bottom:3%;width:70%;min-height:15%;padding:1.1em 1.6em;background:#1a1114e6;border:.3em solid #f2c66f;box-shadow:.4em .4em 0 #000;cursor:pointer;z-index:40;color:#fff1cf}
+.m-who{font-family:"Press Start 2P",monospace;font-size:.7em;color:#f2c66f;margin-bottom:.8em}
+.m-dialog p{margin:0;font-size:1.5em;line-height:1.4}
+.m-next{position:absolute;right:1em;bottom:.5em;animation:g-blink .8s steps(2) infinite}
+.m-reward{position:absolute;inset:0;z-index:50;background:#000d;display:grid;place-content:center;justify-items:center;text-align:center;gap:1.4em;padding:0 20%;color:#fff1cf}
+.m-reward h2{font-family:"Press Start 2P",monospace;color:#f2c66f;font-size:1.8em;margin:0}
+.m-reward p{font-size:1.6em;line-height:1.4;margin:0}
+.m-reward button{margin-top:1em;padding:1em 1.6em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;font-family:"Press Start 2P",monospace;font-size:1em;cursor:pointer}

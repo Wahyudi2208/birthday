@@ -1,0 +1,48 @@
+.mi-root{position:absolute;inset:0;z-index:30;background:#0b0708 center/100% 100% no-repeat;image-rendering:pixelated;overflow:hidden}
+.mi-rumble{animation:mi-rumble .12s steps(2) infinite}
+@keyframes mi-rumble{50%{translate:.35em .2em}}
+.mi-vig{position:absolute;inset:0;pointer-events:none;z-index:6;background:radial-gradient(ellipse at 50% 45%,transparent 35%,#000 108%);transition:opacity .8s}
+.mi-flicker{position:absolute;inset:0;pointer-events:none;z-index:7;background:#000;animation:mi-flicker .9s steps(1) forwards}
+@keyframes mi-flicker{0%{opacity:.85}15%{opacity:0}30%{opacity:.7}45%{opacity:.1}60%{opacity:.8}80%{opacity:.2}100%{opacity:0}}
+.mi-wflash{position:absolute;inset:0;z-index:55;background:#fff;pointer-events:none;animation:mi-wflash .45s steps(4) forwards}
+@keyframes mi-wflash{0%{opacity:.9}100%{opacity:0}}
+/* Pertanyaan: bar tipis di atas supaya tidak menutupi kepala */
+.mi-q{position:absolute;top:2%;left:50%;transform:translateX(-50%);z-index:20;text-align:center;background:#1a1114e6;border:.2em solid #f2c66f;padding:.5em 1.6em .6em;color:#fff1cf;display:grid;gap:.35em;max-width:62%}
+.mi-q small{font-family:"Press Start 2P",monospace;font-size:.55em;color:#f2c66f}
+.mi-q b{font-size:1.3em;font-weight:400;line-height:1.25}
+.mi-threat{position:absolute;top:3%;left:3%;z-index:20;font-family:"Press Start 2P",monospace;font-size:.6em;color:#fff1cf;display:flex;gap:.6em;align-items:center}
+.mi-threat i{width:1.3em;height:1.3em;border:.15em solid #f2c66f;background:#1a1114}
+.mi-threat i.on{background:#d33}
+.mi-solo{position:absolute;left:44%;bottom:21%;height:56%;z-index:7;image-rendering:pixelated;animation:mi-walkin 1.6s ease-out,g-bob 1.6s steps(2) 1.6s infinite}
+@keyframes mi-walkin{from{translate:-90% 0;opacity:0}30%{opacity:1}}
+.mi-av{position:absolute;bottom:21%;height:56%;background:none;border:0;padding:0;z-index:7;cursor:default}
+.mi-av.a{left:31%}.mi-av.b{left:56%}
+.mi-av img{height:100%;display:block;image-rendering:pixelated;pointer-events:none}
+.mi-av.is-pick{cursor:pointer}
+.mi-av.is-pick:hover{filter:brightness(1.2) drop-shadow(0 0 .5em #f2c66f)}
+.mi-tag{position:absolute;top:-2.2em;left:50%;transform:translateX(-50%);font-family:"Press Start 2P",monospace;font-size:.75em;color:#f2c66f;white-space:nowrap}
+.mi-av.glitching{animation:mi-shake .08s steps(2) infinite;filter:hue-rotate(40deg) contrast(1.3)}
+.mi-av.is-mimic{height:66%;animation:mi-shake .1s steps(2) infinite}
+.mi-av.is-mimic img{filter:drop-shadow(0 0 .9em #8a3dff) drop-shadow(0 0 .3em #c07bff)}
+.mi-av.is-mimic.vanish{animation:mi-vanish 1.2s steps(8) forwards}
+@keyframes mi-shake{50%{translate:.45em 0}}
+@keyframes mi-vanish{0%{opacity:1;filter:brightness(1.6)}100%{opacity:0;transform:translateY(-5%) scale(1.06);filter:brightness(2.5) blur(.3em)}}
+.mi-av.walk{left:80%;height:46%;opacity:.15;transition:left 1.9s linear,height 1.9s linear,opacity 1.9s ease-in;animation:none;pointer-events:none}
+.mi-mimic{position:absolute;left:50%;transform:translateX(-50%);z-index:3;image-rendering:pixelated;filter:brightness(.55);pointer-events:none;transition:height .8s steps(5),bottom .8s steps(5)}
+.mi-shadow{position:absolute;left:7%;bottom:24%;height:62%;z-index:2;image-rendering:pixelated;filter:brightness(0) blur(1px);opacity:.4;pointer-events:none;animation:mi-pass 2.8s linear forwards}
+@keyframes mi-pass{from{translate:0 0;opacity:0}15%{opacity:.4}85%{opacity:.4}to{translate:200% 0;opacity:0}}
+.mi-lunge{position:absolute;left:18%;width:62%;bottom:16%;z-index:9;image-rendering:pixelated;animation:mi-lunge .45s ease-in}
+@keyframes mi-lunge{from{transform:scale(.4);opacity:.3}}
+.mi-flash{position:absolute;inset:0;z-index:10;background:#c11;pointer-events:none;opacity:0;animation:mi-flash .9s steps(3)}
+@keyframes mi-flash{0%{opacity:.7}100%{opacity:0}}
+/* Tulisan petunjuk: diam, tidak bergerak */
+.mi-hint{position:absolute;bottom:4%;left:50%;transform:translateX(-50%);z-index:20;padding:.9em 1.4em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;font-family:"Press Start 2P",monospace;font-size:.85em;pointer-events:none}
+.mi-title{position:absolute;inset:0;z-index:60;background:#000;display:grid;place-content:center;justify-items:center;gap:1.4em;text-align:center;transition:opacity 1.2s;pointer-events:none}
+.mi-title.out{opacity:0}
+.mi-title h1{margin:0;font-family:"Press Start 2P",monospace;font-size:3.4em;color:#c92a2a;text-shadow:.08em 0 #3b0d0d,-.06em .04em #6e5aff55;animation:mi-glitch 1.4s steps(1) infinite}
+.mi-title p{margin:0;font-family:"Press Start 2P",monospace;font-size:.8em;color:#f2c66f;letter-spacing:.15em}
+@keyframes mi-glitch{0%,90%{translate:0 0}92%{translate:-.3em .05em}94%{translate:.35em -.05em}96%{translate:0 0}}
+/* Dialog dan potret Mimic */
+.m-dialog.is-mimic{border-color:#a33;background:#190a0ce6}
+.m-dialog.is-mimic .m-who{color:#e55}
+.m-portrait.is-mimic{border-color:#a33;animation:mi-shake .25s steps(2) infinite}

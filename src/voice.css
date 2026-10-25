@@ -1,0 +1,22 @@
+.vn-root{position:absolute;inset:0;z-index:37;background:#07040a;overflow:hidden;color:#fff1cf}
+.vn-bg{position:absolute;inset:0;background-size:100% 100%;image-rendering:pixelated;opacity:.35}
+.vn-shade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,#07040a00 0,#07040af0 80%)}
+.vn-glow{position:absolute;left:50%;top:44%;width:60em;height:34em;translate:-50% -50%;background:radial-gradient(ellipse,#ff6f8f55,transparent 65%);transition:opacity .6s;animation:f-glow 1.4s steps(2) infinite}
+.vn-cassette{position:absolute;left:50%;top:44%;width:44em;aspect-ratio:633/367;translate:-50% -50%;background:none;border:0;padding:0;cursor:pointer;filter:drop-shadow(0 0 1.6em #ff6f8f88)}
+.vn-cassette:disabled{cursor:default}
+.vn-cassette img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.vn-cassette.hot{animation:vn-float 1.2s steps(4) infinite}
+.vn-cassette.on{animation:vn-sway .6s steps(2) infinite}
+@keyframes vn-float{50%{translate:-50% calc(-50% - .8em)}}
+@keyframes vn-sway{50%{translate:-50% calc(-50% - .25em)}}
+.vn-wave{position:absolute;left:50%;top:69.5%;translate:-50% 0;display:flex;align-items:flex-end;gap:.35em;height:4em}
+.vn-wave i{display:block;width:.6em;height:20%;background:#ff6f8f;opacity:.5}
+.vn-wave.on i{opacity:1;animation:vn-bar .6s steps(4) infinite alternate}
+@keyframes vn-bar{from{height:15%}to{height:100%}}
+.vn-prog{position:absolute;left:50%;top:80%;translate:-50% 0;width:34em;height:.7em;background:#000;outline:.15em solid #f2c66f88}
+.vn-prog u{display:block;height:100%;background:#f2c66f;transition:width .1s linear}
+.vn-sub{position:absolute;left:50%;top:84%;translate:-50% 0;width:70%;margin:0;text-align:center;font-size:1.9em;line-height:1.3;text-shadow:.1em .1em 0 #000;animation:f-lyric .4s steps(4)}
+.vn-note{position:absolute;right:2%;bottom:2.5%;font-family:"Press Start 2P",monospace;font-size:.55em;color:#ff9a5a}
+.vn-btns{position:absolute;left:50%;bottom:6%;translate:-50% 0;display:flex;gap:1.4em;z-index:6}
+.vn-btns button{padding:.9em 1.6em;font-family:"Press Start 2P",monospace;font-size:.8em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;box-shadow:.3em .3em 0 #000;cursor:pointer}
+.vn-btns .go{background:#ff6f8f;color:#1a1114;border-color:#1a1114}

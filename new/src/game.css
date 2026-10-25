@@ -1,0 +1,53 @@
+.g-root{position:fixed;inset:0;background:#0b0708;display:grid;place-items:center;font-family:"Pixelify Sans",monospace;color:#fff1cf;z-index:50}
+.g-stage{position:relative;width:min(100vw,177.78vh);aspect-ratio:16/9;overflow:hidden;font-size:min(1.25vw,2.22vh);user-select:none}
+.g-scene{position:absolute;inset:0}
+.g-clock{position:absolute;top:4%;left:50%;transform:translateX(-50%);font-family:"Press Start 2P",monospace;font-size:1.1em;color:#f2c66f}
+.g-app{display:grid;justify-items:center;gap:1em;background:none;border:0;color:inherit;font:inherit;font-family:"Press Start 2P",monospace;font-size:.8em;cursor:pointer}
+.g-app:disabled{opacity:.35;cursor:not-allowed}
+.g-hot{animation:g-pulse 1s steps(2) infinite}
+@keyframes g-pulse{50%{transform:translateY(-.3em);filter:brightness(1.35)}}
+.g-sprite{position:absolute;left:6%;bottom:20%;height:62%;image-rendering:pixelated;pointer-events:none;z-index:5;animation:g-bob 1.6s steps(2) infinite}
+.g-pose-chibi{height:32%;left:4%;bottom:22%}
+.g-pose-hurt{height:36%;left:8%;bottom:20%;animation:none}
+.g-pose-protect{height:64%;left:8%}
+@keyframes g-bob{50%{transform:translateY(-.4em)}}
+.g-bear{position:absolute;right:6%;bottom:20%;width:36%;image-rendering:auto;z-index:6;pointer-events:none;animation:g-in .5s ease-out,g-shake .3s steps(2) 3}
+.g-bear.is-flee{animation:g-flee 1.4s ease-in forwards}
+@keyframes g-in{from{transform:translateX(120%)}}
+@keyframes g-flee{to{transform:translateX(140%)}}
+@keyframes g-shake{50%{translate:.5em 0}}
+.g-dark{position:absolute;inset:0;pointer-events:none;z-index:10;background:radial-gradient(circle 9em at var(--lx,50%) var(--ly,50%),transparent 0,transparent 45%,rgba(0,0,0,.95) 100%)}
+.g-stage:has(.g-dark){cursor:crosshair}
+.g-meter{position:absolute;top:5%;left:50%;transform:translateX(-50%);z-index:15;text-align:center;font-family:"Press Start 2P",monospace;font-size:.8em;display:grid;gap:.8em;width:30em}
+.g-meter div{height:1.2em;border:.2em solid #f2c66f;background:#1a1114}
+.g-meter i{display:block;height:100%;background:#f2c66f}
+.g-bandage-btn,.g-reward button{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:20;padding:1em 1.6em;background:#1a1114;color:#fff1cf;border:.25em solid #f2c66f;font-family:"Press Start 2P",monospace;font-size:1em;cursor:pointer}
+.g-reward{position:absolute;inset:0;z-index:30;background:#000c;display:grid;place-content:center;justify-items:center;text-align:center;gap:1.4em;padding:0 20%}
+.g-reward h2{font-family:"Press Start 2P",monospace;color:#f2c66f;font-size:1.6em;margin:0}
+.g-reward p{font-size:1.6em;line-height:1.4;margin:0}
+.g-reward button{position:static;transform:none;margin-top:1em}
+.g-dialog{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);width:66%;min-height:15%;padding:1.1em 1.6em;background:#1a1114;border:.3em solid #f2c66f;box-shadow:.4em .4em 0 #000;cursor:pointer;z-index:40}
+.g-who{font-family:"Press Start 2P",monospace;font-size:.7em;color:#f2c66f;margin-bottom:.8em}
+.g-dialog p{margin:0;font-size:1.5em;line-height:1.4}
+.g-next{position:absolute;right:1em;bottom:.5em;animation:g-blink .8s steps(2) infinite}
+@keyframes g-blink{50%{opacity:0}}
+.g-mute{position:absolute;top:3%;right:2%;z-index:45;background:#1a1114;border:.2em solid #f2c66f;font-size:1.6em;padding:.2em .4em;cursor:pointer}
+.g-warn{display:none;position:fixed;inset:0;z-index:99;background:#0b0708;place-items:center;text-align:center;padding:2em;font-size:1.3rem}
+@media (max-width:899px){.g-warn{display:grid}}
+
+.g-scene{background-size:100% 100%;background-repeat:no-repeat;image-rendering:pixelated}
+.g-apps{position:absolute;left:56%;top:34%;transform:translateX(-50%);display:flex;gap:4em}
+.g-app i{display:grid;place-items:center;width:7em;height:7em;background:#dfe3ee;border:.25em solid #000;box-shadow:.25em .25em 0 #000}
+.g-app i img{width:68%;image-rendering:pixelated}
+.g-ldoor{position:absolute;top:31%;height:31%;background:none;border:0;color:#fff1cf;cursor:pointer;z-index:4}
+.g-ldoor span{position:absolute;top:108%;left:50%;transform:translateX(-50%);width:140%;font-family:"Press Start 2P",monospace;font-size:.75em;line-height:1.5;text-align:center}
+.g-ldoor.is-open.g-hot{animation:g-glow 1s steps(2) infinite}
+.g-ldoor.is-locked{cursor:not-allowed}.g-ldoor.is-locked span{opacity:.6}
+.g-item{position:absolute;display:grid;justify-items:center;background:none;border:0;color:#fff1cf;cursor:pointer;z-index:4}
+.g-item img{width:100%;image-rendering:pixelated}
+.g-item small{position:absolute;top:100%;margin-top:.4em;font-family:"Press Start 2P",monospace;font-size:.6em;white-space:nowrap}
+.g-item:disabled{cursor:not-allowed}
+.g-radio{left:66.5%;bottom:41%;width:9%}.g-senter{left:66%;bottom:13%;width:6.5%}.g-bandages{left:75.5%;bottom:9%;width:5.5%}
+.g-exit{position:absolute;left:85.4%;top:29.5%;width:11.8%;height:51.5%;background:none;border:0;cursor:pointer;z-index:4}
+.g-exit.g-hot{animation:g-glow 1s steps(2) infinite}
+@keyframes g-glow{50%{box-shadow:0 0 2.2em #f2c66f}}

@@ -1,0 +1,173 @@
+/* =====================================================================
+ *  TAMPILAN ADEGAN DISCORD (prefix .dc-)
+ *
+ *  KNOB PENYETELAN: ubah angka di blok .dc-root tepat di bawah ini.
+ *  Semua ukuran memakai "em" atau "%" supaya ikut mengecil/membesar di layar apa pun.
+ *  Simpan file, lihat hasilnya di browser, ulangi sampai pas.
+ *
+ *    --dc-floor    jarak kaki avatar dari bawah layar. Naikkan = avatar naik, turunkan = avatar turun.
+ *                  (garis lantai bercahaya di latar ada sekitar 15%)
+ *    --dc-arch-x   posisi mendatar avatar cowok (0% = kiri layar, 100% = kanan). Makin kecil = makin ke kiri.
+ *    --dc-arch-h   tinggi avatar cowok (persen tinggi layar). Mau lebih besar? naikkan angkanya.
+ *    --dc-ruby-x   posisi mendatar avatar cewe.
+ *    --dc-ruby-h   tinggi avatar cewe. Kalau terlihat lebih kecil/besar dari cowok, sesuaikan di sini.
+ *    --dc-bub-w    lebar maksimum bubble. Makin lebar = teks makin sedikit baris.
+ *    --dc-bub-font ukuran huruf di bubble.
+ *    --dc-u        ukuran 1 "piksel" di tepi bubble. Makin besar = garis tepi bubble makin tebal/kasar.
+ *
+ *  Kotak panel gelap di latar (bg/discord.png) adalah bagian dari gambar. Cincin hijau
+ *  "sedang bicara" (.dc-ring) harus pas menutupi panelnya. Kalau meleset, geser
+ *  top/left/width/height di .dc-ring dan .dc-ring.l / .dc-ring.r (angkanya persen layar).
+ *
+ *  Tampilan potongan memori (foto kiri, lagu + lirik kanan) ada di bagian ".dc-mem" ke bawah:
+ *  .dc-polaroid (foto) dan .dc-song (judul + lirik) punya left/top/width yang bisa digeser.
+ * ===================================================================== */
+.dc-root {
+  --dc-floor: 15.5%;
+  --dc-arch-x: 31%;
+  --dc-arch-h: 56%;
+  --dc-ruby-x: 69%;
+  --dc-ruby-h: 53%;
+  --dc-bub-w: 30em;
+  --dc-bub-font: 1.7em;
+  --dc-u: 0.3em;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #1e1f22;
+  font-family: "Pixelify Sans", monospace;
+  color: #fff;
+}
+
+/* ---------- avatar ---------- */
+.dc-who { position: absolute; bottom: var(--dc-floor); transform: translateX(-50%); z-index: 3; }
+.dc-who.l { left: var(--dc-arch-x); height: var(--dc-arch-h); aspect-ratio: 255 / 474; }
+.dc-who.r { left: var(--dc-ruby-x); height: var(--dc-ruby-h); aspect-ratio: 217 / 436; }
+.dc-hop { width: 100%; height: 100%; transition: filter 0.2s; }
+.dc-who.off .dc-hop { filter: brightness(0.68) saturate(0.8); } /* yang diam agak redup */
+.dc-hop.hop { animation: dc-hop 0.36s steps(2) infinite; } /* yang bicara sedikit melompat */
+@keyframes dc-hop { 50% { translate: 0 -0.45em; } }
+.dc-spr { width: 100%; height: 100%; display: block; object-fit: contain; image-rendering: pixelated; }
+.dc-name {
+  position: absolute; top: calc(100% + 0.9em); left: 50%; transform: translateX(-50%); white-space: nowrap;
+  background: #111214cc; border: 0.15em solid #3a3c43; border-radius: 0.4em; padding: 0.35em 0.9em; font-size: 1.1em; color: #dbdee1;
+}
+
+/* ---------- cincin hijau "sedang bicara" (mengikuti panel di latar) ---------- */
+.dc-ring {
+  position: absolute; top: 28.8%; height: 38.5%; width: 32.2%; z-index: 1; pointer-events: none;
+  border: 0.35em solid #23a55a; border-radius: 3em; box-shadow: 0 0 1.2em #23a55a99, inset 0 0 1em #23a55a44;
+  opacity: 0; transition: opacity 0.15s;
+}
+.dc-ring.l { left: 16.4%; }
+.dc-ring.r { left: 51.5%; }
+.dc-ring.on { opacity: 1; }
+
+.dc-chan {
+  position: absolute; top: 3%; left: 8%; z-index: 2; background: #111214cc; border: 0.15em solid #3a3c43;
+  border-radius: 0.4em; padding: 0.4em 1.1em; font-size: 1.1em; color: #b5bac1; pointer-events: none;
+}
+.dc-exit {
+  position: absolute; left: 2.5%; top: 9.5%; z-index: 6; padding: 0.5em 0.9em; background: #1a1114; color: #fff1cf; cursor: pointer;
+  border: 0.2em solid #f2c66f; font-family: "Press Start 2P", monospace; font-size: 0.6em;
+}
+.dc-hint {
+  position: absolute; left: 50%; bottom: 1.6em; translate: -50% 0; z-index: 4; pointer-events: none;
+  font-family: "Press Start 2P", monospace; font-size: 0.7em; color: #b5bac1; animation: g-blink 1s steps(2) infinite;
+}
+
+/* ---------- bubble (gambar di public/sprites/dc-bubble.png dan dc-tail.png; ganti file itu kalau mau bubble lain) ---------- */
+.dc-bub { /* pembungkus: posisi + ukuran. Badan (.dc-body) memegang gambar tepi + latar; ekor (.dc-tail) di luar badan */
+  position: absolute; bottom: calc(100% + 0.6em); z-index: 5; width: max-content; max-width: var(--dc-bub-w); min-width: 7em;
+  animation: dc-pop 0.22s steps(4) both;
+}
+.dc-body {
+  box-sizing: border-box; border: calc(var(--dc-u) * 6) solid #1a1114; border-image: var(--bub) 6 fill / calc(var(--dc-u) * 6) stretch;
+  padding: 0.1em 0.5em; color: #1a1114; image-rendering: pixelated;
+  /* latar putih dipotong mengikuti sudut bertangga bubble, supaya tidak ada garis tipis di sambungan gambar */
+  background: #fff;
+  clip-path: polygon(
+    calc(var(--dc-u) * 3) 0, calc(100% - var(--dc-u) * 3) 0, calc(100% - var(--dc-u) * 3) var(--dc-u), calc(100% - var(--dc-u) * 2) var(--dc-u),
+    calc(100% - var(--dc-u) * 2) calc(var(--dc-u) * 2), calc(100% - var(--dc-u)) calc(var(--dc-u) * 2), calc(100% - var(--dc-u)) calc(var(--dc-u) * 4), 100% calc(var(--dc-u) * 4),
+    100% calc(100% - var(--dc-u) * 4), calc(100% - var(--dc-u)) calc(100% - var(--dc-u) * 4), calc(100% - var(--dc-u)) calc(100% - var(--dc-u) * 2), calc(100% - var(--dc-u) * 2) calc(100% - var(--dc-u) * 2),
+    calc(100% - var(--dc-u) * 2) calc(100% - var(--dc-u)), calc(100% - var(--dc-u) * 3) calc(100% - var(--dc-u)), calc(100% - var(--dc-u) * 3) 100%, calc(var(--dc-u) * 3) 100%,
+    calc(var(--dc-u) * 3) calc(100% - var(--dc-u)), calc(var(--dc-u) * 2) calc(100% - var(--dc-u)), calc(var(--dc-u) * 2) calc(100% - var(--dc-u) * 2), var(--dc-u) calc(100% - var(--dc-u) * 2),
+    var(--dc-u) calc(100% - var(--dc-u) * 4), 0 calc(100% - var(--dc-u) * 4), 0 calc(var(--dc-u) * 4), var(--dc-u) calc(var(--dc-u) * 4),
+    var(--dc-u) calc(var(--dc-u) * 2), calc(var(--dc-u) * 2) calc(var(--dc-u) * 2), calc(var(--dc-u) * 2) var(--dc-u), calc(var(--dc-u) * 3) var(--dc-u)
+  );
+}
+.dc-bub.l { left: 50%; margin-left: -3.4em; transform-origin: 3em 100%; }
+.dc-bub.r { right: 50%; margin-right: -3.4em; transform-origin: calc(100% - 3em) 100%; }
+@keyframes dc-pop { from { scale: 0.5; opacity: 0; } }
+.dc-txt { margin: 0; position: relative; font-size: var(--dc-bub-font); line-height: 1.25; }
+.dc-ghost { visibility: hidden; }
+.dc-live { position: absolute; left: 0; top: 0; width: 100%; }
+.dc-key { background: none; color: #5865f2; text-shadow: 0 0 0.6em #5865f2; animation: dc-keyflash 0.5s steps(2) infinite; }
+@keyframes dc-keyflash { 50% { color: #fff; background: #5865f2; } }
+.dc-tail {
+  position: absolute; top: calc(100% - var(--dc-u)); left: 2.4em; width: calc(var(--dc-u) * 7); height: calc(var(--dc-u) * 6); image-rendering: pixelated;
+}
+.dc-bub.r .dc-tail { left: auto; right: 2.4em; scale: -1 1; } /* bubble kanan: ekor dicerminkan supaya menunjuk ke kepala */
+
+/* ---------- layar "menghubungkan" ---------- */
+.dc-connect {
+  position: absolute; inset: 0; z-index: 30; background: #0b0c10; display: grid; place-content: center; justify-items: center; gap: 1.4em;
+  animation: dc-cfade 2.6s linear forwards;
+}
+@keyframes dc-cfade { 0%, 85% { opacity: 1; } 100% { opacity: 0; } }
+.dc-dot { width: 1.4em; height: 1.4em; border-radius: 50%; background: #f0b232; animation: dc-dot 2.6s steps(1) forwards; }
+@keyframes dc-dot { 57% { background: #23a55a; box-shadow: 0 0 1em #23a55a; } }
+.dc-ctext { display: grid; font-family: "Press Start 2P", monospace; font-size: 0.9em; color: #dbdee1; }
+.dc-ctext > * { grid-area: 1 / 1; text-align: center; }
+.dc-c1 { animation: dc-c1 2.6s steps(1) forwards; }
+.dc-c2 { opacity: 0; animation: dc-c2 2.6s steps(1) forwards; }
+@keyframes dc-c1 { 57% { opacity: 0; } }
+@keyframes dc-c2 { 57% { opacity: 1; } }
+
+/* ---------- potongan memori ---------- */
+.dc-mem { position: absolute; inset: 0; z-index: 20; animation: dc-in 0.7s linear both; }
+.dc-mem.out { animation: dc-out 0.5s linear forwards; }
+@keyframes dc-in { from { opacity: 0; } }
+@keyframes dc-out { to { opacity: 0; } }
+.dc-mem::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 45%, #0a0a1ce6 0%, #04040ef2 70%, #000 100%); }
+.dc-mem::after { /* grain tipis */
+  content: ""; position: absolute; inset: -2%; z-index: 3; pointer-events: none;
+  background-image: repeating-linear-gradient(0deg, #ffffff0a 0 1px, transparent 1px 3px); animation: dc-grain 0.5s steps(3) infinite;
+}
+@keyframes dc-grain { 33% { translate: -0.3em 0.2em; } 66% { translate: 0.25em -0.25em; } }
+.dc-flash { position: absolute; inset: 0; z-index: 4; background: #fff; opacity: 0; pointer-events: none; animation: dc-flash 0.45s linear; }
+@keyframes dc-flash { 0% { opacity: 0.85; } 100% { opacity: 0; } }
+.dc-polaroid {
+  position: absolute; left: 11%; top: 15%; z-index: 2; width: 29%; padding: 1.1em 1.1em 0.5em; background: #fffaf0; color: #4a2f1c;
+  box-shadow: 0.4em 0.5em 0 #0008; rotate: -3deg; display: grid; gap: 0.7em; animation: dc-polaroid 0.6s steps(5) 0.35s both;
+}
+@keyframes dc-polaroid { from { opacity: 0; translate: 0 2em; } }
+.dc-photo { aspect-ratio: 1 / 1; background: #d9cdb4; overflow: hidden; }
+.dc-photo img { width: 100%; height: 100%; object-fit: cover; image-rendering: auto; }
+.dc-ph { display: grid; place-content: center; gap: 0.8em; text-align: center; height: 100%; font-family: "Press Start 2P", monospace; font-size: 1.1em; color: #8a7658; }
+.dc-ph small { font-size: 0.5em; line-height: 1.6; }
+.dc-polaroid span { text-align: center; font-family: "Press Start 2P", monospace; font-size: 0.65em; color: #6b4a2c; min-height: 1.4em; padding-bottom: 0.4em; }
+.dc-song { position: absolute; left: 48%; top: 17%; z-index: 2; width: 42%; display: grid; gap: 1.4em; }
+.dc-song-t { font-family: "Press Start 2P", monospace; font-size: 0.95em; color: #f2c66f; line-height: 1.6; min-height: 3.2em; }
+.dc-ly { display: grid; gap: 0.7em; margin-top: 1em; }
+.dc-ly p { margin: 0; font-size: 2.2em; line-height: 1.25; text-shadow: 0.08em 0.08em 0 #000; animation: dc-lyin 0.5s steps(5) both; }
+.dc-ly p.o1 { opacity: 0.55; }
+.dc-ly p.o2 { opacity: 0.28; }
+@keyframes dc-lyin { from { opacity: 0; translate: 0 0.6em; } }
+.dc-skip {
+  position: absolute; left: 50%; bottom: 3.5%; translate: -50% 0; z-index: 5; padding: 0.7em 1.1em; background: #1a1114cc; color: #b5bac1; cursor: pointer;
+  border: 0.2em solid #5a4a30; font-family: "Press Start 2P", monospace; font-size: 0.55em;
+}
+.dc-prog { position: absolute; left: 0; bottom: 0; height: 0.35em; background: #5865f2; z-index: 5; }
+
+/* ---------- kartu penutup ---------- */
+.dc-reward {
+  position: absolute; inset: 0; z-index: 50; background: #0b0c10ee; display: grid; place-content: center; justify-items: center; text-align: center;
+  gap: 1.4em; padding: 0 20%; color: #fff1cf; animation: dc-in 0.8s linear both;
+}
+.dc-reward h2 { font-family: "Press Start 2P", monospace; color: #f2c66f; font-size: 1.8em; margin: 0; }
+.dc-reward p { font-size: 1.6em; line-height: 1.4; margin: 0; }
+.dc-reward button {
+  margin-top: 1em; padding: 1em 1.6em; background: #1a1114; color: #fff1cf; border: 0.25em solid #f2c66f; cursor: pointer;
+  font-family: "Press Start 2P", monospace; font-size: 1em;
+}

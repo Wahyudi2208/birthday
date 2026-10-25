@@ -1,0 +1,43 @@
+.wr-root{position:absolute;inset:0;z-index:36;background:#0b0708;overflow:hidden;color:#fff1cf}
+.wr-bg{position:absolute;inset:0;background-size:100% 100%;image-rendering:pixelated}
+.wr-abang{position:absolute;left:47%;bottom:9%;height:48%;aspect-ratio:356/723;transform:translateX(-50%);z-index:5}
+.wr-abang img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.wr-abang img.bob{animation:wr-bob .18s steps(2) infinite}
+@keyframes wr-bob{50%{translate:0 -1.5%}}
+.wr-ruby{position:absolute;left:25%;bottom:7%;transform:translateX(-50%);z-index:6}
+.wr-ruby img{height:100%;width:auto;display:block;image-rendering:pixelated;transform-origin:50% 100%}
+.wr-ruby{display:flex;align-items:flex-end}
+.wr-ruby img{height:100%}
+.wr-ruby img.chew{animation:wr-chew .22s steps(2) infinite}
+@keyframes wr-chew{50%{transform:scale(1.02,.97)}}
+.wr-ruby img.shiver{animation:wr-shiver .12s steps(2) infinite}
+@keyframes wr-shiver{0%{translate:-.25em 0}100%{translate:.25em 0}}
+.wr-bubble{position:absolute;left:25%;top:20%;transform:translateX(-50%);z-index:12;padding:.6em 1em;font-family:"Press Start 2P",monospace;font-size:.9em;background:#fff1cf;color:#1a1114;border:.25em solid #1a1114;box-shadow:.3em .3em 0 #000;animation:g-pulse .5s steps(2) infinite}
+
+.wr-order{position:absolute;left:50%;top:4%;transform:translateX(-50%);z-index:20;width:64%;padding:1.2em 1.6em;display:grid;gap:1em;background:#1a1114f2;border:.3em solid #f2c66f;box-shadow:.4em .4em 0 #000}
+.wr-order h3{margin:0;text-align:center;font-family:"Press Start 2P",monospace;font-size:1.05em;color:#f2c66f}
+.wr-row{display:flex;gap:.7em;align-items:stretch}
+.wr-row>small{flex:0 0 5.5em;align-self:center;font-family:"Press Start 2P",monospace;font-size:.7em;color:#f2c66f}
+.wr-row button{flex:1;display:grid;place-items:center;align-content:center;gap:.25em;padding:.6em .3em;font-family:"Press Start 2P",monospace;font-size:.72em;color:#fff1cf;background:#2a1d22;border:.2em solid #6b5a4a;cursor:pointer}
+.wr-row button i{font-style:normal;font-family:"Pixelify Sans",monospace;font-size:1.3em;color:#cdbfa6}
+.wr-row button.on{border-color:#f2c66f;background:#4a3320;color:#ffe9a8}
+.wr-row button.ing img{height:3.4em;width:auto;image-rendering:pixelated;opacity:.45;filter:grayscale(.6)}
+.wr-row button.ing.on img{opacity:1;filter:none}
+.wr-go{justify-self:center;padding:.9em 2em;font-family:"Press Start 2P",monospace;font-size:.85em;background:#ff6f8f;color:#1a1114;border:.25em solid #1a1114;box-shadow:.3em .3em 0 #000;cursor:pointer}
+.wr-go:disabled{background:#6b5a4a;color:#2a1d22;cursor:default}
+
+.wr-hud{position:absolute;left:50%;top:4%;transform:translateX(-50%);z-index:20;display:flex;gap:1.4em;padding:.7em 1.1em;background:#1a1114e6;border:.25em solid #f2c66f;box-shadow:.3em .3em 0 #000}
+.wr-hud span{display:grid;gap:.4em;font-family:"Press Start 2P",monospace;font-size:.6em;color:#f2c66f}
+.wr-hud i{display:block;width:12em;height:.9em;background:#000;outline:.15em solid #f2c66f66}
+.wr-hud u{display:block;height:100%;background:#7dff9c;transition:width .3s steps(4)}
+.wr-hud .hot{color:#ff9a5a}
+.wr-hud .hot u{background:linear-gradient(90deg,#ff9a5a,#ff3b30)}
+.wr-bite,.wr-teh{position:absolute;z-index:20;font-family:"Press Start 2P",monospace;color:#1a1114;border:.25em solid #1a1114;box-shadow:.3em .3em 0 #000;cursor:pointer}
+.wr-bite{left:25%;bottom:2.5%;transform:translateX(-50%);padding:.9em 1.8em;font-size:1em;background:#f2c66f;animation:g-pulse 1s steps(2) infinite}
+.wr-bite:disabled{animation:none;opacity:.6;cursor:default}
+.wr-teh{left:25%;bottom:2.5%;transform:translateX(-50%);display:flex;align-items:center;gap:.7em;padding:.5em 1.2em;font-size:.9em;background:#7ec8ff;animation:g-pulse .5s steps(2) infinite}
+.wr-teh:disabled{animation:none;opacity:.6;cursor:default}
+.wr-teh img{height:3.2em;width:auto;image-rendering:pixelated}
+.wr-reward{position:absolute;left:50%;top:20%;transform:translateX(-50%);z-index:22;padding:.8em 1.6em;font-family:"Press Start 2P",monospace;font-size:1.6em;background:#1a1114;color:#ffd24a;border:.25em solid #ffd24a;box-shadow:.4em .4em 0 #000;animation:wr-rw 1s steps(8)}
+@keyframes wr-rw{from{scale:0;opacity:0}60%{scale:1.2}to{scale:1;opacity:1}}
+.wr-fx{position:absolute;inset:0;pointer-events:none;z-index:25}
