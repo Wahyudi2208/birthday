@@ -1,0 +1,10 @@
+{
+  "description": "Engage users with a charming retro pixel-art lockscreen that invites them to unlock a birthday game by entering a PIN, enhancing their celebration experience.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
